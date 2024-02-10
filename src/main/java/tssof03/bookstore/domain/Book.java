@@ -1,14 +1,25 @@
 package tssof03.bookstore.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "BOOK")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String title;
     private String author;
     private Integer publicationYear;
-    private Integer isbn;
+    private String isbn;
     private Double price;
 
     
-    public Book(String title, String author, Integer publicationYear, Integer isbn, Double price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, Double price) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -40,7 +51,7 @@ public class Book {
     }
 
 
-    public Integer getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
@@ -65,7 +76,7 @@ public class Book {
     }
 
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 

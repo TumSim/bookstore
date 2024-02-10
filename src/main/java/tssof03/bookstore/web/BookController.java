@@ -10,6 +10,6 @@ public class BookController {
     @GetMapping("/index")
 
     public String firstPage(){
-        return"frontpage";
+        return "frontpage";
     }
 }
