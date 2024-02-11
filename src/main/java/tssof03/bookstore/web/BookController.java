@@ -50,4 +50,18 @@ public class BookController {
         return "redirect:/booklist";
 
     }
+
+    @RequestMapping(value = "/editbook/{id}")
+
+    public String editBook(@PathVariable("id") Long id, Model model){
+        model.addAttribute("id", bookRepository.findById(id));
+        return "editbook"; //editbook.html
+    }
+
+    @PostMapping("/saveagain")
+
+    public String saveAgain(@ModelAttribute Book book){
+        bookRepository.save(book);
+        return "redirect:/booklist";
+    }
 }
