@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String title;
     private String author;
     private Integer publicationYear;
@@ -27,12 +27,38 @@ public class Book {
         this.price = price;
     }
 
+    
+
+    public Book(Long id, String title, String author, Integer publicationYear, String isbn, Double price) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.isbn = isbn;
+        this.price = price;
+    }
+
+
+
     public Book() {
+        this.id = null;
         this.title = null;
         this.author = null;
         this.publicationYear = null;
         this.isbn = null;
         this.price = null;
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
