@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import tssof03.bookstore.domain.Book;
 import tssof03.bookstore.domain.BookRepository;
+import tssof03.bookstore.domain.Category;
+import tssof03.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -19,17 +21,27 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository BookRepository) {
+	public CommandLineRunner demo(BookRepository BookRepository, CategoryRepository CategoryRepository) {
 		return (args) -> {
-			// Your code...add some demo data to db
+			// added some demo data to db
 
 			log.info("couple books");
-			Book book1 = new Book("tuomas", "Simoinen", 2008, "1995", 20.5);
-			Book book2 = new Book("ida", "Hanninen", 2019, "1998", 1000.50);
+			Book book1 = new Book("test1", "Book1", 2008, "1995", 20.5);
+			Book book2 = new Book("test2", "book2", 2019, "1998", 1000.50);
+
+			log.info("Demo category data");
+			Category category1 = new Category("Scifi");
+			Category category2 = new Category("Comic");
+			Category category3 = new Category("Fantasy");
+
 
 			log.info("fetch");
 			BookRepository.save(book1);
 			BookRepository.save(book2);
+			CategoryRepository.save(category1);
+			CategoryRepository.save(category2);
+			CategoryRepository.save(category3);
+
 
 		};
 	}
