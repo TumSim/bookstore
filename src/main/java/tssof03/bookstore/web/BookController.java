@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import tssof03.bookstore.domain.Book;
 import tssof03.bookstore.domain.BookRepository;
+import tssof03.bookstore.domain.CategoryRepository;
 
 
 
@@ -21,6 +22,9 @@ public class BookController {
     
     @Autowired
     BookRepository bookRepository;
+    
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/booklist")
 
@@ -33,6 +37,7 @@ public class BookController {
 
     public String addBook(Model model){
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook"; //addbook.html
     }
 
@@ -55,6 +60,7 @@ public class BookController {
 
     public String editBook(@PathVariable("id") Long id, Model model){
         model.addAttribute("id", bookRepository.findById(id));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editbook"; //editbook.html
     }
 
