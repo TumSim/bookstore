@@ -25,23 +25,24 @@ public class BookstoreApplication {
 		return (args) -> {
 			// added some demo data to db
 
-			log.info("couple books");
-			Book book1 = new Book("test1", "Book1", 2008, "1995", 20.5);
-			Book book2 = new Book("test2", "book2", 2019, "1998", 1000.50);
-
 			log.info("Demo category data");
 			Category category1 = new Category("Scifi");
 			Category category2 = new Category("Comic");
 			Category category3 = new Category("Fantasy");
 
 
+			log.info("couple books");
+			Book book1 = new Book("test1", "Book1", 2008, "1995", 20.5, category1);
+			Book book2 = new Book("test2", "book2", 2019, "1998", 1000.50, category2);
+
+
+
 			log.info("fetch");
-			BookRepository.save(book1);
-			BookRepository.save(book2);
 			CategoryRepository.save(category1);
 			CategoryRepository.save(category2);
 			CategoryRepository.save(category3);
-
+			BookRepository.save(book1);
+			BookRepository.save(book2);
 
 		};
 	}

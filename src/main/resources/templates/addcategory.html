@@ -9,7 +9,7 @@
     <h1>New Category</h1>
     <table>
         <form method="post" action="#" th:action = "@{/savenewcategory}" th:object = ${category}>
-            <p>Name: <input type="text" th:field = "${category.name}"></p>
+            <p>Category Name: <input type="text" th:field = "${category.name}"></p>
 
             <input type="submit" value = "Add category">
         </form>
