@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booklist page</title>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <h1>Books</h1>
+    <div class="container">
+        <div class="col-md-4">
+            <h1>Books</h1>
+        </div>
+        <div class="col-md-4">
+            <h3>Hello <span sec:authentication="name"></span></h3>
+        </div>
+        
+        <div class="col-md-4">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+            </form>
+        </div>
+
+
+
     <table class="table table-striped">
         <tr>
             <th>Author</th>
@@ -23,11 +39,12 @@
                 <td th:text = "${book.publicationYear}">
                 <td th:text = "${book.category.name}"></td>
                 <td>
-                    <a th:href = "@{/delete/{id}(id=${book.id})}" class = "btn btn-danger">Delete</a>
                     <a th:href = "@{/editbook/{id}(id=${book.id})}" class = "btn btn-primary">Edit</a>
+                    <a sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}" class = "btn btn-danger" >Delete</a>
                 </td>
             </tr>
     </table>
-    <p><a th:href = "@{/add}" class = "btn btn-success">Add Book</a></p>
+    <a th:href = "@{/add}" class = "btn btn-success">Add Book</a>
+</div>
 </body>
 </html>

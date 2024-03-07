@@ -1,6 +1,7 @@
 package tssof03.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,12 @@ public class BookController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @GetMapping("/login")
+
+    public String loginPage(){
+        return "login"; //login.html
+    }
+
     @GetMapping("/booklist")
 
     public String firstPage(Model model){
@@ -49,7 +56,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable("id") Long bookId){
         bookRepository.deleteById(bookId);
         return "redirect:/booklist";
